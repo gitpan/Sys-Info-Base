@@ -1,6 +1,6 @@
 ---
 name: Sys-Info-Base
-version: 0.69_05
+version: 0.69_06
 author:
   - 'Burak Gursoy <burak@cpan.org>'
 abstract: Base class for Sys::Info
@@ -13,10 +13,10 @@ requires:
 provides:
   Sys::Info::Base:
     file: lib/Sys/Info/Base.pm
-    version: 0.69_05
+    version: 0.69_06
   Sys::Info::Constants:
     file: lib/Sys/Info/Constants.pm
-    version: 0.69_01
+    version: 0.69_06
   Sys::Info::Device:
     file: lib/Sys/Info/Device.pm
     version: 0.69_01
