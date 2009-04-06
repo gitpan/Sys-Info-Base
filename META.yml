@@ -1,6 +1,6 @@
 ---
 name: Sys-Info-Base
-version: 0.69_11
+version: 0.70
 author:
   - 'Burak Gursoy <burak@cpan.org>'
 abstract: Base class for Sys::Info
@@ -14,22 +14,22 @@ build_requires:
 provides:
   Sys::Info::Base:
     file: lib/Sys/Info/Base.pm
-    version: 0.69_11
+    version: 0.70
   Sys::Info::Constants:
     file: lib/Sys/Info/Constants.pm
-    version: 0.69_10
+    version: 0.70
   Sys::Info::Device:
     file: lib/Sys/Info/Device.pm
-    version: 0.69_10
+    version: 0.70
   Sys::Info::Device::CPU:
     file: lib/Sys/Info/Device/CPU.pm
-    version: 0.69_10
+    version: 0.70
   Sys::Info::Driver:
     file: lib/Sys/Info/Driver.pm
-    version: 0.69_10
+    version: 0.70
   Sys::Info::OS:
     file: lib/Sys/Info/OS.pm
-    version: 0.69_10
+    version: 0.70
 generated_by: Module::Build version 0.32
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html
