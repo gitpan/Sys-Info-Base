@@ -6,7 +6,7 @@ use Carp qw( croak );
 use File::Spec;
 use Sys::Info::Constants qw( :date OSID );
 
-$VERSION = '0.70';
+$VERSION = '0.72';
 
 my %LOAD_MODULE; # cache
 
@@ -132,6 +132,9 @@ Sys::Info::Base - Base class for Sys::Info
     }
 
 =head1 DESCRIPTION
+
+This document describes version C<0.72> of C<Sys::Info::Base>
+released on C<3 May 2009>.
 
 Includes some common methods.
 

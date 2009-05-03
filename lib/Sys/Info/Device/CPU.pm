@@ -6,7 +6,7 @@ use base qw( Sys::Info::Base );
 use Sys::Info::Constants qw( OSID );
 use Carp qw( croak );
 
-$VERSION = '0.70';
+$VERSION = '0.72';
 
 BEGIN {
     push @ISA, __PACKAGE__->load_subclass('Sys::Info::Driver::%s::Device::CPU');
@@ -113,6 +113,9 @@ Example:
    printf "CPU load: %s\n"       , $cpu->load  || 0;
 
 =head1 DESCRIPTION
+
+This document describes version C<0.72> of C<Sys::Info::Device::CPU>
+released on C<3 May 2009>.
 
 Collects and returns information about the Central Processing Unit
 (CPU) on the host machine.

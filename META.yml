@@ -1,35 +1,39 @@
 ---
 name: Sys-Info-Base
-version: 0.70
+version: 0.72
 author:
   - 'Burak Gursoy <burak@cpan.org>'
 abstract: Base class for Sys::Info
 license: perl
 resources:
-  license: ~
-requires:
-  IO::File: 0
+  license: http://dev.perl.org/licenses/
+  repository: http://bitbucket.org/burak/cpan-sys-info-base/
 build_requires:
   Test::More: 0.40
 provides:
   Sys::Info::Base:
     file: lib/Sys/Info/Base.pm
-    version: 0.70
+    version: 0.72
   Sys::Info::Constants:
     file: lib/Sys/Info/Constants.pm
-    version: 0.70
+    version: 0.72
   Sys::Info::Device:
     file: lib/Sys/Info/Device.pm
-    version: 0.70
+    version: 0.72
   Sys::Info::Device::CPU:
     file: lib/Sys/Info/Device/CPU.pm
-    version: 0.70
+    version: 0.72
   Sys::Info::Driver:
     file: lib/Sys/Info/Driver.pm
-    version: 0.70
+    version: 0.72
   Sys::Info::OS:
     file: lib/Sys/Info/OS.pm
-    version: 0.70
+    version: 0.72
+no_index:
+  directory:
+    - monolithic_version
+    - builder
+    - t
 generated_by: Module::Build version 0.32
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.2.html

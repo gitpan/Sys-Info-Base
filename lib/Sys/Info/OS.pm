@@ -5,7 +5,7 @@ use base qw( Sys::Info::Base );
 use Sys::Info::Constants qw( OSID );
 use Carp qw( croak );
 
-$VERSION = '0.70';
+$VERSION = '0.72';
 
 BEGIN {
     my $class = __PACKAGE__->load_subclass('Sys::Info::Driver::%s::OS');
@@ -139,6 +139,9 @@ Example:
    }
 
 =head1 DESCRIPTION
+
+This document describes version C<0.72> of C<Sys::Info::OS>
+released on C<3 May 2009>.
 
 Supplies detailed operating system information.
 

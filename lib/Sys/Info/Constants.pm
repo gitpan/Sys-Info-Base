@@ -4,7 +4,7 @@ use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS );
 use Carp qw( croak );
 use Exporter ();
 
-$VERSION = '0.70';
+$VERSION = '0.72';
 
 BEGIN {
     if ( ! defined &OSID ) {
@@ -151,6 +151,9 @@ Sys::Info::Constants - Constants for Sys::Info
     printf "CPU Load: %s\n", $cpu->load(DCPU_LOAD_LAST_01);
 
 =head1 DESCRIPTION
+
+This document describes version C<0.72> of C<Sys::Info::Constants>
+released on C<3 May 2009>.
 
 This module defines all the constants used inside C<Sys::Info> and it's
 subclasses.
