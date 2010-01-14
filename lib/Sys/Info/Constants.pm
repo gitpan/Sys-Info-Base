@@ -1,10 +1,11 @@
 package Sys::Info::Constants;
 use strict;
-use vars qw( $VERSION @ISA @EXPORT_OK %EXPORT_TAGS );
+use warnings;
+use vars qw( $VERSION @EXPORT_OK %EXPORT_TAGS );
 use Carp qw( croak );
-use Exporter ();
+use base qw( Exporter );
 
-$VERSION = '0.72';
+$VERSION = '0.73';
 
 BEGIN {
     if ( ! defined &OSID ) {
@@ -52,13 +53,6 @@ use constant LIN_MOUNT_OPTS       => 3;
 use constant LIN_DUMP_FREQ        => 4;
 use constant LIN_FS_CHECK_ORDER   => 5;
 
-# uname()
-use constant LIN_SYSNAME          => 0;
-use constant LIN_NODENAME         => 1;
-use constant LIN_RELEASE          => 2;
-use constant LIN_VERSION          => 3;
-use constant LIN_MACHINE          => 4;
-
 # getpwnam()
 use constant LIN_REAL_NAME_FIELD  => 6;
 use constant LIN_RE_LINUX_VERSION => qr{
@@ -71,14 +65,9 @@ use constant LIN_RE_LINUX_VERSION => qr{
    \z
 }xmsi;
 
-use constant UN_OS_SYSNAME  => 0;
-use constant UN_OS_NODENAME => 1;
-use constant UN_OS_RELEASE  => 2;
-use constant UN_OS_VERSION  => 3;
-use constant UN_OS_MACHINE  => 4;
 use constant UN_RE_BUILD    => qr{\A Build \s+ (\d+) .* \z}xmsio;
 
-@ISA = qw(Exporter);
+use constant NEW_PERL       => $] >= 5.008;
 
 %EXPORT_TAGS = (
     device_cpu => [qw/
@@ -115,23 +104,15 @@ use constant UN_RE_BUILD    => qr{\A Build \s+ (\d+) .* \z}xmsio;
                     LIN_MOUNT_OPTS
                     LIN_DUMP_FREQ
                     LIN_FS_CHECK_ORDER
-                    LIN_SYSNAME
-                    LIN_NODENAME
-                    LIN_RELEASE
-                    LIN_VERSION
-                    LIN_MACHINE
                     LIN_REAL_NAME_FIELD
                     LIN_RE_LINUX_VERSION
                     /],
+
     unknown     => [qw/
-                    UN_OS_SYSNAME
-                    UN_OS_NODENAME
-                    UN_OS_RELEASE
-                    UN_OS_VERSION
-                    UN_OS_MACHINE
                     UN_RE_BUILD
                     /],
-    general     => [qw/ OSID /],
+
+    general     => [qw/ OSID NEW_PERL /],
 );
 
 @EXPORT_OK        = map { @{ $_ } } values %EXPORT_TAGS;
@@ -152,8 +133,8 @@ Sys::Info::Constants - Constants for Sys::Info
 
 =head1 DESCRIPTION
 
-This document describes version C<0.72> of C<Sys::Info::Constants>
-released on C<3 May 2009>.
+This document describes version C<0.73> of C<Sys::Info::Constants>
+released on C<14 January 2010>.
 
 This module defines all the constants used inside C<Sys::Info> and it's
 subclasses.
@@ -192,20 +173,8 @@ Every constant can be imported individually or via import keys:
                     LIN_MOUNT_OPTS
                     LIN_DUMP_FREQ
                     LIN_FS_CHECK_ORDER
-                    LIN_SYSNAME
-                    LIN_NODENAME
-                    LIN_RELEASE
-                    LIN_VERSION
-                    LIN_MACHINE
                     LIN_REAL_NAME_FIELD
                     LIN_RE_LINUX_VERSION
-
-    :unknown        UN_OS_SYSNAME
-                    UN_OS_NODENAME
-                    UN_OS_RELEASE
-                    UN_OS_VERSION
-                    UN_OS_MACHINE
-                    UN_RE_BUILD
 
     :general        OSID
 
@@ -213,18 +182,22 @@ Every constant can be imported individually or via import keys:
 
 The Operating System name used inside all C<Sys::Info> modules.
 
+=head1 SEE ALSO
+
+L<Sys::Info>.
+
 =head1 AUTHOR
 
-Burak Gürsoy, E<lt>burakE<64>cpan.orgE<gt>
+Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006-2009 Burak Gürsoy. All rights reserved.
+Copyright 2006 - 2010 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.10.0 or, 
+it under the same terms as Perl itself, either Perl version 5.10.1 or, 
 at your option, any later version of Perl 5 you may have available.
 
 =cut

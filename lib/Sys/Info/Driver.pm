@@ -1,8 +1,9 @@
 package Sys::Info::Driver;
 use strict;
+use warnings;
 use vars qw( $VERSION );
 
-$VERSION = '0.72';
+$VERSION = '0.73';
 
 1;
 
@@ -12,18 +13,26 @@ __END__
 
 Sys::Info::Driver - Driver base class
 
+=head1 SEE ALSO
+
+L<Sys::Info>,
+L<Sys::Info::Driver::Unknown>,
+L<Sys::Info::Driver::Windows>,
+L<Sys::Info::Driver::Linux>,
+L<Sys::Info::Driver::BSD>.
+
 =head1 AUTHOR
 
-Burak Gürsoy, E<lt>burakE<64>cpan.orgE<gt>
+Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006-2009 Burak Gürsoy. All rights reserved.
+Copyright 2006 - 2010 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.10.0 or, 
+it under the same terms as Perl itself, either Perl version 5.10.1 or, 
 at your option, any later version of Perl 5 you may have available.
 
 =cut

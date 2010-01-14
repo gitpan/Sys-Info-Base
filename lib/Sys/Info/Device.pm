@@ -1,18 +1,19 @@
 package Sys::Info::Device;
 use strict;
-use vars qw($VERSION);
+use warnings;
+use vars qw( $VERSION );
 use constant SUPPORTED => qw( CPU BIOS );
 use Carp qw( croak );
 use base qw( Sys::Info::Base );
 use Sys::Info::Constants qw( OSID );
 
-$VERSION = '0.72';
+$VERSION = '0.73';
 
 BEGIN {
     MK_ACCESSORS: {
         no strict qw(refs);
         foreach my $device ( SUPPORTED ) {
-            *{ '_device_' . lc( $device ) } = sub {
+            *{ '_device_' . lc $device } = sub {
                 my $self = shift;
                 return  Sys::Info::Base->load_module(
                             'Sys::Info::Device::' . $device
@@ -23,14 +24,14 @@ BEGIN {
 }
 
 sub new {
-    my $class  = shift;
-    my $device = shift || croak "Device ID is missing";
+    my($class, @args) = @_;
+    my $device = shift @args or croak 'Device ID is missing';
     my $self   = {};
     bless $self, $class;
 
-    my $method = '_device_' . lc($device);
+    my $method = '_device_' . lc $device;
     croak "Bogus device ID: $device" if ! $self->can( $method );
-    return $self->$method( @_ ? (@_) : () );
+    return $self->$method( @args ? @args : () );
 }
 
 sub _device_available {
@@ -40,8 +41,8 @@ sub _device_available {
     my @buf;
 
     foreach my $test ( SUPPORTED ) {
-        eval { $self->new( $test ) };
-        next if $@;
+        my $eok = eval { $self->new( $test ); 1; };
+        next if $@ || ! $eok;
         push @buf, $test;
     }
 
@@ -71,8 +72,8 @@ or
 
 =head1 DESCRIPTION
 
-This document describes version C<0.72> of C<Sys::Info::Device>
-released on C<3 May 2009>.
+This document describes version C<0.73> of C<Sys::Info::Device>
+released on C<14 January 2010>.
 
 This is an interface to the available devices such as the C<CPU>.
 
@@ -86,18 +87,22 @@ bogus or false.
 If C<DEVICE_ID> has the value of C<available>, then the names of the
 available devices will be returned.
 
+=head1 SEE ALSO
+
+L<Sys::Info::Device::CPU>, L<Sys::Info>.
+
 =head1 AUTHOR
 
-Burak Gürsoy, E<lt>burakE<64>cpan.orgE<gt>
+Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006-2009 Burak Gürsoy. All rights reserved.
+Copyright 2006 - 2010 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.10.0 or, 
+it under the same terms as Perl itself, either Perl version 5.10.1 or, 
 at your option, any later version of Perl 5 you may have available.
 
 =cut

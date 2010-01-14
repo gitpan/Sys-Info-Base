@@ -1,17 +1,35 @@
 package Sys::Info::OS;
 use strict;
-use vars qw( $VERSION @ISA   );
-use base qw( Sys::Info::Base );
-use Sys::Info::Constants qw( OSID );
-use Carp qw( croak );
+use warnings;
+use vars qw( $VERSION );
+use subs qw( LC_TYPE  );
+use vars qw( @ISA     );
+use base                 qw( Sys::Info::Base );
+use Carp                 qw( croak );
+use Sys::Info::Constants qw( OSID  );
 
-$VERSION = '0.72';
+use constant TARGET_CLASS => __PACKAGE__->load_subclass('Sys::Info::Driver::%s::OS');
+use base TARGET_CLASS;
+
+my $POSIX;
 
 BEGIN {
-    my $class = __PACKAGE__->load_subclass('Sys::Info::Driver::%s::OS');
-    push @ISA, $class;
+    # this check is for the Unknown driver
+    local $@;
+    my $eok = eval {
+        require POSIX;
+        POSIX->import( qw(locale_h) );
+        $POSIX = 1;
+        1;
+    };
+    *LC_CTYPE = sub {} if $@ || ! $eok;
+}
 
+$VERSION = '0.73';
+
+BEGIN {
     CREATE_SYNONYMS_AND_UTILITY_METHODS: {
+        ## no critic (TestingAndDebugging::ProhibitProlongedStrictureOverride)
         no strict qw(refs);
         *is_admin   = *is_admin_user
                     = *is_adminuser
@@ -20,7 +38,7 @@ BEGIN {
                     = *is_super_user
                     = *is_superuser
                     = *is_su
-                    = *{ $class.'::is_root' }
+                    = *{ TARGET_CLASS.'::is_root' }
                     ;
         *is_win32   = *is_windows
                     = *is_win
@@ -31,9 +49,10 @@ BEGIN {
                     ;
         *is_bsd     = sub () { OSID eq 'BSD'     };
         *is_unknown = sub () { OSID eq 'Unknown' };
-        *workgroup  = *{ $class . '::domain_name' };
-        *host_name  = *{ $class . '::node_name'   };
-        *time_zone  = *{ $class . '::tz'          };
+        *workgroup  = *{ TARGET_CLASS . '::domain_name' };
+        *host_name  = *{ TARGET_CLASS . '::node_name'   };
+        *time_zone  = *{ TARGET_CLASS . '::tz'          };
+        ## use critic
     }
 
     CREATE_FAKES: {
@@ -56,11 +75,9 @@ BEGIN {
 }
 
 sub new {
-    my $class = shift;
-    my $self  = {
-        scalar(@_) % 2 ? () : (@_), # options to new()
-    };
-    bless  $self, $class;
+    my($class, @args) = @_;
+    my $self = { @args % 2 ? () : @args };
+    bless $self, $class;
     $self->init if $self->can('init');
     return $self;
 }
@@ -84,12 +101,15 @@ sub ip {
     require Sys::Hostname;
     my $host = gethostbyname Sys::Hostname::hostname() || return;
     my $ip   = Socket::inet_ntoa($host);
-    if($ip && $ip =~ m{\A 127}xms) {
-        if($self->SUPER::can('_ip')) {
-            $ip = $self->SUPER::_ip();
-        }
-    }
+    $ip = $self->SUPER::_ip()
+        if $ip && $ip =~ m{ \A 127 }xms && $self->SUPER::can('_ip');
     return $ip;
+}
+
+sub locale {
+    return if ! $POSIX;
+    my $self = shift;
+    return setlocale( LC_CTYPE() );
 }
 
 1;
@@ -140,8 +160,8 @@ Example:
 
 =head1 DESCRIPTION
 
-This document describes version C<0.72> of C<Sys::Info::OS>
-released on C<3 May 2009>.
+This document describes version C<0.73> of C<Sys::Info::OS>
+released on C<14 January 2010>.
 
 Supplies detailed operating system information.
 
@@ -233,7 +253,7 @@ Returns a hash containing various informations about the OS.
 
 =head2 cdkey
 
-
+=head2 locale
 
 =head1 UTILITY METHODS
 
@@ -352,26 +372,24 @@ I<access is denied> error.
 
 L<Win32>, L<POSIX>, 
 L<Sys::Info>,
+L<Sys::Info::Device>,
 L<http://msdn.microsoft.com/library/en-us/sysinfo/base/osversioninfoex_str.asp>.
 
 =head1 AUTHOR
 
-Burak Gürsoy, E<lt>burakE<64>cpan.orgE<gt>
+Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006-2009 Burak Gürsoy. All rights reserved.
+Copyright 2006 - 2010 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.10.0 or, 
+it under the same terms as Perl itself, either Perl version 5.10.1 or, 
 at your option, any later version of Perl 5 you may have available.
 
 =cut
-
-
-
 
 use Socket;
 sub network_name {
@@ -381,9 +399,6 @@ sub network_name {
    my $name  = gethostbyaddr($iaddr, AF_INET);
    return $name || $ip;
 }
-
-
-
 
 #<TODO>
 sub disk_quota {}
