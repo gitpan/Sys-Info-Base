@@ -7,7 +7,7 @@ use Carp qw( croak );
 use base qw( Sys::Info::Base );
 use Sys::Info::Constants qw( OSID );
 
-$VERSION = '0.73';
+$VERSION = '0.78';
 
 BEGIN {
     MK_ACCESSORS: {
@@ -72,8 +72,8 @@ or
 
 =head1 DESCRIPTION
 
-This document describes version C<0.73> of C<Sys::Info::Device>
-released on C<14 January 2010>.
+This document describes version C<0.78> of C<Sys::Info::Device>
+released on C<17 April 2011>.
 
 This is an interface to the available devices such as the C<CPU>.
 
@@ -97,12 +97,12 @@ Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006 - 2010 Burak Gursoy. All rights reserved.
+Copyright 2006 - 2011 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.10.1 or, 
+it under the same terms as Perl itself, either Perl version 5.12.3 or, 
 at your option, any later version of Perl 5 you may have available.
 
 =cut

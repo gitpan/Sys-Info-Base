@@ -1,0 +1,71 @@
+{
+   "abstract" : "Base class for Sys::Info",
+   "author" : [
+      "Burak Gursoy <burak@cpan.org>"
+   ],
+   "dynamic_config" : 1,
+   "generated_by" : "Module::Build version 0.38, CPAN::Meta::Converter version 2.110930",
+   "license" : [
+      "perl_5"
+   ],
+   "meta-spec" : {
+      "url" : "http://search.cpan.org/perldoc?CPAN::Meta::Spec",
+      "version" : "2"
+   },
+   "name" : "Sys-Info-Base",
+   "no_index" : {
+      "directory" : [
+         "monolithic_version",
+         "builder",
+         "t"
+      ]
+   },
+   "prereqs" : {
+      "build" : {
+         "requires" : {
+            "Test::More" : "0.40"
+         }
+      },
+      "configure" : {
+         "requires" : {
+            "Module::Build" : "0.38"
+         }
+      }
+   },
+   "provides" : {
+      "Sys::Info::Base" : {
+         "file" : "lib/Sys/Info/Base.pm",
+         "version" : "0.78"
+      },
+      "Sys::Info::Constants" : {
+         "file" : "lib/Sys/Info/Constants.pm",
+         "version" : "0.78"
+      },
+      "Sys::Info::Device" : {
+         "file" : "lib/Sys/Info/Device.pm",
+         "version" : "0.78"
+      },
+      "Sys::Info::Device::CPU" : {
+         "file" : "lib/Sys/Info/Device/CPU.pm",
+         "version" : "0.78"
+      },
+      "Sys::Info::Driver" : {
+         "file" : "lib/Sys/Info/Driver.pm",
+         "version" : "0.78"
+      },
+      "Sys::Info::OS" : {
+         "file" : "lib/Sys/Info/OS.pm",
+         "version" : "0.78"
+      }
+   },
+   "release_status" : "stable",
+   "resources" : {
+      "license" : [
+         "http://dev.perl.org/licenses/"
+      ],
+      "repository" : {
+         "url" : "http://bitbucket.org/burak/cpan-sys-info-base/"
+      }
+   },
+   "version" : "0.78"
+}

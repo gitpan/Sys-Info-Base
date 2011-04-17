@@ -22,10 +22,10 @@ BEGIN {
         $POSIX = 1;
         1;
     };
-    *LC_CTYPE = sub {} if $@ || ! $eok;
+    *LC_CTYPE = sub () {} if $@ || ! $eok;
 }
 
-$VERSION = '0.73';
+$VERSION = '0.78';
 
 BEGIN {
     CREATE_SYNONYMS_AND_UTILITY_METHODS: {
@@ -140,17 +140,17 @@ Example:
    my %fs = $os->fs;
    print Data::Dumper->Dump([\%fs], ['*FILE_SYSTEM']);
    
-   print  "B1ll G4teZ rull4z!\n" if $os->is_windows;
-   print  "Pinguin detected!\n"  if $os->is_linux;
-   if($os->is_windows) {
+   print "B1ll G4teZ rull4z!\n" if $os->is_windows;
+   print "Pinguin detected!\n"  if $os->is_linux;
+   if ( $os->is_windows ) {
       printf "This is a %s based system\n", $os->is_winnt ? 'NT' : '9.x';
    }
    printf "Operating System: %s\n", $os->name( long => 1 );
    
-   my $user = $os->login_name_real || $os->login_name || 'User';
+   my $user = $os->login_name( real => 1 ) || $os->login_name || 'User';
    print "$user, You've Got The P.O.W.E.R.!\n" if $os->is_root;
    
-   if(my $up = $os->uptime) {
+   if ( my $up = $os->uptime ) {
       my $tick = $os->tick_count;
       printf "Running since %s\n"   , scalar localtime $up;
       printf "Uptime: %.2f hours\n" , $tick / (60*60      ); # probably windows
@@ -160,8 +160,8 @@ Example:
 
 =head1 DESCRIPTION
 
-This document describes version C<0.73> of C<Sys::Info::OS>
-released on C<14 January 2010>.
+This document describes version C<0.78> of C<Sys::Info::OS>
+released on C<17 April 2011>.
 
 Supplies detailed operating system information.
 
@@ -344,8 +344,11 @@ Synonyms:
 
 =item *
 
-I don't have any access to any other os, so this module
-(currently) only supports Windows & Linux. Windows support is better.
+I don't have access to all operating systems in the world, so this module
+(currently) only supports Windows, Linux and (Free)BSD. Windows support is better.
+If you want support for some other OS, you'll need to write the driver
+yourself. Anything other than natively supported systems will fall-back
+to the generic C<Unknown> driver which has I<very> limited capabilities.
 
 =item *
 
@@ -366,6 +369,10 @@ File system information can not be extracted under restricted
 environments. If this is the case, we'll get an
 I<access is denied> error.
 
+=item *
+
+Bitness has some problems [Linux, BSD], especially on the os side.
+
 =back
 
 =head1 SEE ALSO
@@ -381,12 +388,12 @@ Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006 - 2010 Burak Gursoy. All rights reserved.
+Copyright 2006 - 2011 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.10.1 or, 
+it under the same terms as Perl itself, either Perl version 5.12.3 or, 
 at your option, any later version of Perl 5 you may have available.
 
 =cut

@@ -5,7 +5,7 @@ use vars qw( $VERSION @EXPORT_OK %EXPORT_TAGS );
 use Carp qw( croak );
 use base qw( Exporter );
 
-$VERSION = '0.73';
+$VERSION = '0.78';
 
 BEGIN {
     if ( ! defined &OSID ) {
@@ -13,7 +13,7 @@ BEGIN {
             MSWin32  => 'Windows',
             MSWin64  => 'Windows',
             linux    => 'Linux',
-            #darwin   => 'MacOSX',
+            darwin   => 'OSX',
         );
         $OS{$_} = 'BSD' for qw( freebsd openbsd netbsd );
         my $ID = $OS{ $^O } || 'Unknown';
@@ -60,12 +60,12 @@ use constant LIN_RE_LINUX_VERSION => qr{
    Linux \s+ version \s
    (.+?)
    \s
-   \( .+? \@ .+? \)
+   [(] .+? \@ .+? [)]
    (.*?)
    \z
 }xmsi;
 
-use constant UN_RE_BUILD    => qr{\A Build \s+ (\d+) .* \z}xmsio;
+use constant UN_RE_BUILD    => qr{\A Build \s+ (\d+) .* \z}xmsi;
 
 use constant NEW_PERL       => $] >= 5.008;
 
@@ -133,8 +133,8 @@ Sys::Info::Constants - Constants for Sys::Info
 
 =head1 DESCRIPTION
 
-This document describes version C<0.73> of C<Sys::Info::Constants>
-released on C<14 January 2010>.
+This document describes version C<0.78> of C<Sys::Info::Constants>
+released on C<17 April 2011>.
 
 This module defines all the constants used inside C<Sys::Info> and it's
 subclasses.
@@ -192,12 +192,12 @@ Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006 - 2010 Burak Gursoy. All rights reserved.
+Copyright 2006 - 2011 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.10.1 or, 
+it under the same terms as Perl itself, either Perl version 5.12.3 or, 
 at your option, any later version of Perl 5 you may have available.
 
 =cut
