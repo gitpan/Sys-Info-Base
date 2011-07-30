@@ -8,7 +8,7 @@ use Sys::Info::Constants qw( OSID );
 use Carp qw( croak );
 use base __PACKAGE__->load_subclass('Sys::Info::Driver::%s::Device::CPU');
 
-$VERSION = '0.78';
+$VERSION = '0.7801';
 
 BEGIN {
     # define aliases
@@ -115,8 +115,8 @@ Example:
 
 =head1 DESCRIPTION
 
-This document describes version C<0.78> of C<Sys::Info::Device::CPU>
-released on C<17 April 2011>.
+This document describes version C<0.7801> of C<Sys::Info::Device::CPU>
+released on C<31 July 2011>.
 
 Collects and returns information about the Central Processing Unit
 (CPU) on the host machine.

@@ -25,7 +25,7 @@ BEGIN {
     *LC_CTYPE = sub () {} if $@ || ! $eok;
 }
 
-$VERSION = '0.78';
+$VERSION = '0.7801';
 
 BEGIN {
     CREATE_SYNONYMS_AND_UTILITY_METHODS: {
@@ -160,8 +160,8 @@ Example:
 
 =head1 DESCRIPTION
 
-This document describes version C<0.78> of C<Sys::Info::OS>
-released on C<17 April 2011>.
+This document describes version C<0.7801> of C<Sys::Info::OS>
+released on C<31 July 2011>.
 
 Supplies detailed operating system information.
 

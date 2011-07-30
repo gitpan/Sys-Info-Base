@@ -7,7 +7,7 @@ use Carp qw( croak );
 use base qw( Sys::Info::Base );
 use Sys::Info::Constants qw( OSID );
 
-$VERSION = '0.78';
+$VERSION = '0.7801';
 
 BEGIN {
     MK_ACCESSORS: {
@@ -72,8 +72,8 @@ or
 
 =head1 DESCRIPTION
 
-This document describes version C<0.78> of C<Sys::Info::Device>
-released on C<17 April 2011>.
+This document describes version C<0.7801> of C<Sys::Info::Device>
+released on C<31 July 2011>.
 
 This is an interface to the available devices such as the C<CPU>.
 

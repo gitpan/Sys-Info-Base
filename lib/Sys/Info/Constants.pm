@@ -5,7 +5,7 @@ use vars qw( $VERSION @EXPORT_OK %EXPORT_TAGS );
 use Carp qw( croak );
 use base qw( Exporter );
 
-$VERSION = '0.78';
+$VERSION = '0.7801';
 
 BEGIN {
     if ( ! defined &OSID ) {
@@ -41,33 +41,11 @@ use constant DATE_MONTHS          => qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct
 use constant DATE_MKTIME_YDAY     =>  0;
 use constant DATE_MKTIME_ISDST    => -1;
 
-# uptime
-use constant LIN_UP_TIME          => 0;
-use constant LIN_IDLE_TIME        => 1;
-
-# fstab entries
-use constant LIN_FS_SPECIFIER     => 0;
-use constant LIN_MOUNT_POINT      => 1;
-use constant LIN_FS_TYPE          => 2;
-use constant LIN_MOUNT_OPTS       => 3;
-use constant LIN_DUMP_FREQ        => 4;
-use constant LIN_FS_CHECK_ORDER   => 5;
-
-# getpwnam()
-use constant LIN_REAL_NAME_FIELD  => 6;
-use constant LIN_RE_LINUX_VERSION => qr{
-   \A
-   Linux \s+ version \s
-   (.+?)
-   \s
-   [(] .+? \@ .+? [)]
-   (.*?)
-   \z
-}xmsi;
-
 use constant UN_RE_BUILD    => qr{\A Build \s+ (\d+) .* \z}xmsi;
 
 use constant NEW_PERL       => $] >= 5.008;
+
+use constant USER_REAL_NAME_FIELD => 6;
 
 %EXPORT_TAGS = (
     device_cpu => [qw/
@@ -95,24 +73,16 @@ use constant NEW_PERL       => $] >= 5.008;
                     DATE_MKTIME_YDAY
                     DATE_MKTIME_ISDST
                     /],
-    linux       => [qw/
-                    LIN_UP_TIME
-                    LIN_IDLE_TIME
-                    LIN_FS_SPECIFIER
-                    LIN_MOUNT_POINT
-                    LIN_FS_TYPE
-                    LIN_MOUNT_OPTS
-                    LIN_DUMP_FREQ
-                    LIN_FS_CHECK_ORDER
-                    LIN_REAL_NAME_FIELD
-                    LIN_RE_LINUX_VERSION
-                    /],
 
     unknown     => [qw/
                     UN_RE_BUILD
                     /],
 
-    general     => [qw/ OSID NEW_PERL /],
+    general     => [qw/
+                    OSID
+                    NEW_PERL
+                    USER_REAL_NAME_FIELD
+                /],
 );
 
 @EXPORT_OK        = map { @{ $_ } } values %EXPORT_TAGS;
@@ -133,8 +103,8 @@ Sys::Info::Constants - Constants for Sys::Info
 
 =head1 DESCRIPTION
 
-This document describes version C<0.78> of C<Sys::Info::Constants>
-released on C<17 April 2011>.
+This document describes version C<0.7801> of C<Sys::Info::Constants>
+released on C<31 July 2011>.
 
 This module defines all the constants used inside C<Sys::Info> and it's
 subclasses.
@@ -164,17 +134,6 @@ Every constant can be imported individually or via import keys:
                     DATE_MONTHS
                     DATE_MKTIME_YDAY
                     DATE_MKTIME_ISDST
-
-    :linux          LIN_UP_TIME
-                    LIN_IDLE_TIME
-                    LIN_FS_SPECIFIER
-                    LIN_MOUNT_POINT
-                    LIN_FS_TYPE
-                    LIN_MOUNT_OPTS
-                    LIN_DUMP_FREQ
-                    LIN_FS_CHECK_ORDER
-                    LIN_REAL_NAME_FIELD
-                    LIN_RE_LINUX_VERSION
 
     :general        OSID
 
