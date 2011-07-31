@@ -7,7 +7,7 @@ use Carp qw( croak );
 use base qw( Sys::Info::Base );
 use Sys::Info::Constants qw( OSID );
 
-$VERSION = '0.7801';
+$VERSION = '0.7802';
 
 BEGIN {
     MK_ACCESSORS: {
@@ -35,13 +35,14 @@ sub new {
 }
 
 sub _device_available {
-    my $self = shift;
+    my $self  = shift;
+    my $class = ref $self || $self;
+    my @buf;
     local $@;
     local $SIG{__DIE__};
-    my @buf;
 
     foreach my $test ( SUPPORTED ) {
-        my $eok = eval { $self->new( $test ); 1; };
+        my $eok = eval { $class->new( $test ); 1; };
         next if $@ || ! $eok;
         push @buf, $test;
     }
@@ -72,7 +73,7 @@ or
 
 =head1 DESCRIPTION
 
-This document describes version C<0.7801> of C<Sys::Info::Device>
+This document describes version C<0.7802> of C<Sys::Info::Device>
 released on C<31 July 2011>.
 
 This is an interface to the available devices such as the C<CPU>.

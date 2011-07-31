@@ -21,23 +21,23 @@ no_index:
 provides:
   Sys::Info::Base:
     file: lib/Sys/Info/Base.pm
-    version: 0.7801
+    version: 0.7802
   Sys::Info::Constants:
     file: lib/Sys/Info/Constants.pm
-    version: 0.7801
+    version: 0.7802
   Sys::Info::Device:
     file: lib/Sys/Info/Device.pm
-    version: 0.7801
+    version: 0.7802
   Sys::Info::Device::CPU:
     file: lib/Sys/Info/Device/CPU.pm
-    version: 0.7801
+    version: 0.7802
   Sys::Info::Driver:
     file: lib/Sys/Info/Driver.pm
-    version: 0.7801
+    version: 0.7802
   Sys::Info::OS:
     file: lib/Sys/Info/OS.pm
-    version: 0.7801
+    version: 0.7802
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://bitbucket.org/burak/cpan-sys-info-base/
-version: 0.7801
+version: 0.7802

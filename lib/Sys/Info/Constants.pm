@@ -5,7 +5,7 @@ use vars qw( $VERSION @EXPORT_OK %EXPORT_TAGS );
 use Carp qw( croak );
 use base qw( Exporter );
 
-$VERSION = '0.7801';
+$VERSION = '0.7802';
 
 BEGIN {
     if ( ! defined &OSID ) {
@@ -103,7 +103,7 @@ Sys::Info::Constants - Constants for Sys::Info
 
 =head1 DESCRIPTION
 
-This document describes version C<0.7801> of C<Sys::Info::Constants>
+This document describes version C<0.7802> of C<Sys::Info::Constants>
 released on C<31 July 2011>.
 
 This module defines all the constants used inside C<Sys::Info> and it's
