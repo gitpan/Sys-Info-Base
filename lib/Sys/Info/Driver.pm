@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use vars qw( $VERSION );
 
-$VERSION = '0.7802';
+$VERSION = '0.7803';
 
 1;
 
@@ -27,12 +27,11 @@ Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006 - 2011 Burak Gursoy. All rights reserved.
+Copyright 2006 - 2013 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
-This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.12.3 or, 
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.16.2 or,
 at your option, any later version of Perl 5 you may have available.
-
 =cut

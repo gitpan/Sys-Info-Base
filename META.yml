@@ -5,9 +5,9 @@ author:
 build_requires:
   Test::More: 0.40
 configure_requires:
-  Module::Build: 0.38
+  Module::Build: 0.40
 dynamic_config: 1
-generated_by: 'Module::Build version 0.38, CPAN::Meta::Converter version 2.110930'
+generated_by: 'Module::Build version 0.4003, CPAN::Meta::Converter version 2.120921'
 license: perl
 meta-spec:
   url: http://module-build.sourceforge.net/META-spec-v1.4.html
@@ -18,26 +18,30 @@ no_index:
     - monolithic_version
     - builder
     - t
+    - xt
 provides:
   Sys::Info::Base:
     file: lib/Sys/Info/Base.pm
-    version: 0.7802
+    version: 0.7803
   Sys::Info::Constants:
     file: lib/Sys/Info/Constants.pm
-    version: 0.7802
+    version: 0.7803
   Sys::Info::Device:
     file: lib/Sys/Info/Device.pm
-    version: 0.7802
+    version: 0.7803
   Sys::Info::Device::CPU:
     file: lib/Sys/Info/Device/CPU.pm
-    version: 0.7802
+    version: 0.7803
   Sys::Info::Driver:
     file: lib/Sys/Info/Driver.pm
-    version: 0.7802
+    version: 0.7803
+  Sys::Info::Helper:
+    file: lib/Sys/Info/Helper.pm
+    version: 0.7803
   Sys::Info::OS:
     file: lib/Sys/Info/OS.pm
-    version: 0.7802
+    version: 0.7803
 resources:
   license: http://dev.perl.org/licenses/
   repository: http://bitbucket.org/burak/cpan-sys-info-base/
-version: 0.7802
+version: 0.7803

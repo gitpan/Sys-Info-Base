@@ -11,7 +11,7 @@ use constant DRIVER_FAIL_MSG => q{Operating system identified as: '%s'. }
                               . q{Falling back to compatibility mode};
 use constant YEAR_DIFF => 1900;
 
-$VERSION = '0.7802';
+$VERSION = '0.7803';
 
 my %LOAD_MODULE; # cache
 my %UNAME;       # cache
@@ -149,8 +149,8 @@ Sys::Info::Base - Base class for Sys::Info
 
 =head1 DESCRIPTION
 
-This document describes version C<0.7802> of C<Sys::Info::Base>
-released on C<31 July 2011>.
+This document describes version C<0.7803> of C<Sys::Info::Base>
+released on C<10 May 2013>.
 
 Includes some common methods.
 
@@ -199,12 +199,11 @@ Burak Gursoy <burak@cpan.org>.
 
 =head1 COPYRIGHT
 
-Copyright 2006 - 2011 Burak Gursoy. All rights reserved.
+Copyright 2006 - 2013 Burak Gursoy. All rights reserved.
 
 =head1 LICENSE
 
-This library is free software; you can redistribute it and/or modify 
-it under the same terms as Perl itself, either Perl version 5.12.3 or, 
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself, either Perl version 5.16.2 or,
 at your option, any later version of Perl 5 you may have available.
-
 =cut
